@@ -10,7 +10,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const client = {
 	entry: path.resolve(__dirname, "./src/client/Main.ts"),
 	output: {
-		path: path.resolve(__dirname, "./dist/public"),
+		path: path.resolve(__dirname, "./public"),
 		publicPath: "/",
 		filename: "index.js?[hash]",
 	},
@@ -31,19 +31,20 @@ const client = {
 			template: path.join(__dirname, "src/client/index.html"),
 		}),
 		new CopyWebpackPlugin([
-			{ from: "src/client/test.txt", },
+			{ from: "src/client/404.html", },
 		]),
 	],
 };
 
 const server = {
 	target: "node",
-	externals: [nodeExternals()],
+	externals: [nodeExternals(),],
 	entry: path.resolve(__dirname, "./src/server/Main.ts"),
 	output: {
-		path: path.resolve(__dirname, "./dist"),
+		path: path.resolve(__dirname, "./functions"),
 		publicPath: "/",
-		filename: "main.js",
+		filename: "index.js",
+		libraryTarget: 'commonjs',
 	},
 	resolve: {
 		extensions: [".js", ".ts",],

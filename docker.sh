@@ -2,7 +2,7 @@
 
 [ ${#} -eq 0 ] && sh ${0} help && exit
 [ ${#} -eq 1 ] && [ ${1} = "first" ] && sh ${0} create start && exit
-[ ${#} -eq 1 ] && [ ${1} = "second" ] && sh ${0} address put build serve && exit
+[ ${#} -eq 1 ] && [ ${1} = "second" ] && sh ${0} address put build login serve && exit
 [ ${#} -eq 1 ] && [ ${1} = "last" ] && sh ${0} stop clear && exit
 
 BASE_NAME1=fuhaha
@@ -10,8 +10,11 @@ BASE_NAME2=train-view
 TARGET1_CONTAINER=${BASE_NAME1}-ctr-${BASE_NAME2}
 TARGET1_IMAGE=${BASE_NAME1}-img-${BASE_NAME2}
 TARGET1_IMAGE_TAG=1.0.0
-TARGET1_PORT_OUTER=8080
-TARGET1_PORT_INNER=8080
+TARGET1_PORT_HOST_OUTER=5000
+TARGET1_PORT_HOST_INNER=5000
+TARGET1_PORT_FUNC_OUTER=5001
+TARGET1_PORT_FUNC_INNER=5001
+TARGET1_PORT_OAUTH=9005
 
 for ARG in "${@}" ; do
 	echo -------- ${ARG} start --------
@@ -34,7 +37,7 @@ for ARG in "${@}" ; do
 		create)
 			docker build --tag ${TARGET1_IMAGE}:${TARGET1_IMAGE_TAG} --force-rm .
 			[ ${?} -gt 0 ] && exit
-			docker create --name ${TARGET1_CONTAINER} --publish ${TARGET1_PORT_OUTER}:${TARGET1_PORT_INNER} --interactive --tty ${TARGET1_IMAGE}:${TARGET1_IMAGE_TAG} /bin/bash --login
+			docker create --name ${TARGET1_CONTAINER} --publish ${TARGET1_PORT_HOST_OUTER}:${TARGET1_PORT_HOST_INNER} --publish ${TARGET1_PORT_FUNC_OUTER}:${TARGET1_PORT_FUNC_INNER} --publish ${TARGET1_PORT_OAUTH}:${TARGET1_PORT_OAUTH} --interactive --tty ${TARGET1_IMAGE}:${TARGET1_IMAGE_TAG} /bin/bash --login
 			[ ${?} -gt 0 ] && exit
 			;;
 		start)
@@ -64,8 +67,8 @@ for ARG in "${@}" ; do
 			;;
 		address)
 			DOCKER_IP=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' ${TARGET1_CONTAINER})
-			DOCKER_HOSTIP=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "'${TARGET1_PORT_INNER}'/tcp") 0).HostIp}}' ${TARGET1_CONTAINER})
-			DOCKER_HOSTPORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "'${TARGET1_PORT_INNER}'/tcp") 0).HostPort}}' ${TARGET1_CONTAINER})
+			DOCKER_HOSTIP=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "'${TARGET1_PORT_HOST_INNER}'/tcp") 0).HostIp}}' ${TARGET1_CONTAINER})
+			DOCKER_HOSTPORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "'${TARGET1_PORT_HOST_INNER}'/tcp") 0).HostPort}}' ${TARGET1_CONTAINER})
 			echo http://${DOCKER_HOSTIP}:${DOCKER_HOSTPORT}
 			;;
 
@@ -74,11 +77,17 @@ for ARG in "${@}" ; do
 		install)
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm install'
 			;;
+		login)
+			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run login'
+			;;
 		build)
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run build'
 			;;
 		serve)
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run serve'
+			;;
+		deploy)
+			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run deploy'
 			;;
 		clean)
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && rm -rf src'

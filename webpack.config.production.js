@@ -6,11 +6,11 @@ const base = require('./webpack.config.base.js');
 // ----------------------------------------------------------------
 
 const client = {
-	mode: "development",
+	mode: "production",
 };
 
 const server = {
-	mode: "development",
+	mode: "production",
 };
 
 module.exports = [
