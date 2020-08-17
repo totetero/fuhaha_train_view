@@ -1,0 +1,19 @@
+{
+	"name": "fuhaha_train_view",
+	"version": "0.1.0",
+	"scripts": {
+		"build": "webpack --config webpack.config.development.js",
+		"serve": "cd dist && node main.js"
+	},
+	"dependencies": {
+		"typescript": "3.8.3",
+		"@types/node": "14.0.1",
+		"webpack": "4.41.6",
+		"webpack-cli": "3.3.11",
+		"webpack-merge": "5.1.1",
+		"webpack-node-externals": "1.7.2",
+		"html-webpack-plugin": "3.2.0",
+		"copy-webpack-plugin": "5.1.1",
+		"ts-loader": "6.2.1"
+	}
+}
