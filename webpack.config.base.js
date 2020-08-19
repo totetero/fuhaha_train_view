@@ -15,11 +15,11 @@ const client = {
 		filename: "index.js?[hash]",
 	},
 	resolve: {
-		extensions: [".js", ".ts",],
+		extensions: [".js", ".ts", ".tsx",],
 	},
 	module: {
 		rules: [{
-			test: /\.ts$/,
+			test: /\.(ts|tsx)$/,
 			loader: "ts-loader",
 			options: {
 				configFile: "tsconfig.client.json",

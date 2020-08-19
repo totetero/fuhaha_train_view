@@ -4,19 +4,41 @@
 // ----------------------------------------------------------------
 
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import callFunction from "./functionOnCallHello";
-import App from "./App";
+import { DocumentNode, } from "graphql";
+import { gql, } from "apollo-boost";
+import { QueryResult, } from "@apollo/react-common";
+import { useQuery, } from "@apollo/react-hooks";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-// 処理はここから始まる
-document.addEventListener("DOMContentLoaded", (event: Event): void => {
-	callFunction({}).then((response: string): void => console.log(response));
-	ReactDOM.render(React.createElement(App), document.getElementById("app"));
-});
+const query: DocumentNode = gql`{
+	hello
+}`;
+
+const Component: React.FunctionComponent<{}> = ({}): JSX.Element => {
+	const result: QueryResult<{
+		hello: string;
+	}> = useQuery(query);
+
+	return result.loading ? (
+		<div>
+			<div>loading</div>
+		</div>
+	) : result.error ? (
+		<div>
+			<div>{ result.error.toString() }</div>
+		</div>
+	) : (
+		<div>
+			<div>apollo</div>
+			<div>{ result.data?.hello }</div>
+		</div>
+	);
+};
+
+export default Component;
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
