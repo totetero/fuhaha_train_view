@@ -3,13 +3,10 @@
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-import * as express from "express";
-import { apolloServer, } from "@/server/apolloServer";
-
-const app: express.Express = express();
-app.use(apolloServer);
-
-export default app;
+// 命令種
+export enum ActionTypes {
+	reduxTemplateTest,
+}
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

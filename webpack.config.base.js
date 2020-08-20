@@ -16,6 +16,7 @@ const client = {
 	},
 	resolve: {
 		extensions: [".js", ".ts", ".tsx",],
+		alias: { "@": path.resolve(__dirname, "src"), },
 	},
 	module: {
 		rules: [{
@@ -31,7 +32,7 @@ const client = {
 			template: path.join(__dirname, "src/client/index.html"),
 		}),
 		new CopyWebpackPlugin([
-			{ from: "src/client/404.html", },
+			{ from: 'src/client/test.txt' },
 		]),
 	],
 };
@@ -48,6 +49,7 @@ const server = {
 	},
 	resolve: {
 		extensions: [".js", ".ts",],
+		alias: { "@": path.resolve(__dirname, "src"), },
 	},
 	module: {
 		rules: [{

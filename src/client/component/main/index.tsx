@@ -4,9 +4,18 @@
 // ----------------------------------------------------------------
 
 import * as React from "react";
+import {
+	BrowserRouter,
+	Switch,
+	Route,
+} from "react-router-dom";
+import * as ReactRedux from "react-redux";
+import { store, } from "@/client/redux/Store";
 import { ApolloProvider, } from "@apollo/react-hooks";
-import { apolloClient, } from "./apolloClient";
-import ComponentHello from "./ComponentHello";
+import { apolloClient, } from "@/client/component/main/apolloClient";
+import ComponentTemplate from "@/client/component/template";
+import ComponentPageTop from "@/client/component/pageTop";
+import ComponentPageTest from "@/client/component/pageTest";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -15,7 +24,15 @@ import ComponentHello from "./ComponentHello";
 const Component: React.FunctionComponent<{}> = ({}): JSX.Element => {
 	return (
 		<ApolloProvider client={apolloClient}>
-			<ComponentHello/>
+			<ReactRedux.Provider store = { store }>
+				<BrowserRouter>
+					<Switch>
+						<Route path="/test" component={ ComponentPageTest } />
+						<Route path="/template" component={ ComponentTemplate } />
+						<Route component={ ComponentPageTop } />
+					</Switch>
+				</BrowserRouter>
+			</ReactRedux.Provider>
 		</ApolloProvider>
 	);
 };

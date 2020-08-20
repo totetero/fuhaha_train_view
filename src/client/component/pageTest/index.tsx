@@ -8,6 +8,7 @@ import { DocumentNode, } from "graphql";
 import { gql, } from "apollo-boost";
 import { QueryResult, } from "@apollo/react-common";
 import { useQuery, } from "@apollo/react-hooks";
+import callFunction from "@/client/firebase/functionOnCallHello";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -34,6 +35,7 @@ const Component: React.FunctionComponent<{}> = ({}): JSX.Element => {
 		<div>
 			<div>apollo</div>
 			<div>{ result.data?.hello }</div>
+			<button onClick={(): void => { callFunction({}).then((response: string): void => console.log(response)); }}>hello</button>
 		</div>
 	);
 };

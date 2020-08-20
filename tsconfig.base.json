@@ -6,5 +6,6 @@
 		"noImplicitReturns": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": false,
+		"baseUrl": "./",
 	},
 }

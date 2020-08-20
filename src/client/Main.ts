@@ -5,8 +5,7 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import callFunction from "./functionOnCallHello";
-import App from "./App";
+import ComponentMain from "@/client/component/main";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -14,8 +13,7 @@ import App from "./App";
 
 // 処理はここから始まる
 document.addEventListener("DOMContentLoaded", (event: Event): void => {
-	callFunction({}).then((response: string): void => console.log(response));
-	ReactDOM.render(React.createElement(App), document.getElementById("app"));
+	ReactDOM.render(React.createElement(ComponentMain), document.getElementById("app"));
 });
 
 // ----------------------------------------------------------------
