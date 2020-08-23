@@ -19,4 +19,8 @@ apt-get purge -y npm && \
 apt-get purge -y nodejs
 
 RUN \
+npm install && \
+cd /root/project/workspace/hosting && \
+npm install && \
+cd /root/project/workspace/functions && \
 npm install

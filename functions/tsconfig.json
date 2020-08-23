@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"strict": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": false,
+		"baseUrl": "./",
+		"paths": { "@/*": ["./src/*"], },
+	},
+	"include": [
+		"./src",
+	],
+}

@@ -8,7 +8,7 @@ import { DocumentNode, } from "graphql";
 import { gql, } from "apollo-boost";
 import { QueryResult, } from "@apollo/react-common";
 import { useQuery, } from "@apollo/react-hooks";
-import callFunction from "@/client/firebase/functionOnCallHello";
+import callFunction from "@/firebase/functionOnCallHello";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

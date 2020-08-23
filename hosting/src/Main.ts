@@ -5,7 +5,7 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import ComponentMain from "@/client/component/main";
+import ComponentMain from "@/component/main";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

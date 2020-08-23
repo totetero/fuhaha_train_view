@@ -7,8 +7,8 @@ import * as React from "react";
 import { Link, } from "react-router-dom";
 import * as ReactRedux from "react-redux";
 import * as Redux from "redux";
-import { ReduxStoreState, } from "@/client/redux/Store";
-import { reduxTemplateCreateActionTest, } from "@/client/redux/ReduxTemplate";
+import { ReduxStoreState, } from "@/redux/Store";
+import { reduxTemplateCreateActionTest, } from "@/redux/ReduxTemplate";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

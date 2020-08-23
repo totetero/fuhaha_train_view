@@ -1,23 +1,33 @@
 {
-  "name": "functions",
-  "description": "Cloud Functions for Firebase",
-  "scripts": {
-    "serve": "firebase emulators:start --only functions",
-    "shell": "firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
-  },
-  "engines": {
-    "node": "10"
-  },
-  "main": "index.js",
-  "dependencies": {
-    "firebase-admin": "^8.10.0",
-    "firebase-functions": "^3.6.1"
-  },
-  "devDependencies": {
-    "firebase-functions-test": "^0.2.0"
-  },
-  "private": true
+	"name": "functions",
+	"scripts": {
+		"build_development": "webpack --config webpack.config.development.js",
+		"build_production": "webpack --config webpack.config.production.js",
+		"serve": "firebase emulators:start --only functions",
+		"shell": "firebase functions:shell",
+		"start": "npm run shell",
+		"deploy": "firebase deploy --only functions",
+		"logs": "firebase functions:log"
+	},
+	"engines": {
+		"node": "10"
+	},
+	"main": "index.js",
+	"dependencies": {
+		"firebase-admin": "9.0.0",
+		"firebase-functions": "3.9.0",
+		"firebase-functions-test": "0.2.1",
+		"express": "4.17.1",
+		"graphql": "15.3.0",
+		"apollo-server-express": "2.15.1",
+		"@types/node": "14.0.1",
+		"@types/express": "4.17.6",
+		"webpack": "4.41.6",
+		"webpack-cli": "3.3.11",
+		"webpack-merge": "5.1.1",
+		"webpack-node-externals": "1.7.2",
+		"typescript": "3.8.3",
+		"ts-loader": "6.2.1"
+	},
+	"private": true
 }

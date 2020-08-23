@@ -1,22 +1,13 @@
-const { merge } = require('webpack-merge');
+const { merge, } = require('webpack-merge');
 const base = require('./webpack.config.base.js');
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-const client = {
-	mode: "production",
-};
-
-const server = {
-	mode: "production",
-};
-
-module.exports = [
-	merge(base[0], client),
-	merge(base[1], server),
-];
+module.exports = merge(base, {
+	mode: "development",
+});
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

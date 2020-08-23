@@ -4,7 +4,7 @@
 // ----------------------------------------------------------------
 
 import * as firebase from "firebase/app";
-import { functions, } from "@/client/firebase/firebaseSetting";
+import { functions, } from "@/firebase/firebaseSetting";
 
 export interface Request {}
 

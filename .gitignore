@@ -3,5 +3,9 @@
 
 node_modules
 
+public/index.js
+public/index.html
+functions/index.js
+
 # --------------------------------
 
