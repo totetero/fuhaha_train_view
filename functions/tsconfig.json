@@ -8,7 +8,9 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": false,
 		"baseUrl": "./",
-		"paths": { "@/*": ["./src/*"], },
+		"paths": {
+			"@server/*": ["./src/*"],
+		},
 	},
 	"include": [
 		"./src",

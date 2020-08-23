@@ -5,7 +5,7 @@
 
 import * as firebase from "firebase/app";
 import "firebase/functions";
-import firebaseConfig from "@/firebase/firebaseConfig";
+import firebaseConfig from "@client/firebase/firebaseConfig";
 
 firebase.initializeApp(firebaseConfig);
 

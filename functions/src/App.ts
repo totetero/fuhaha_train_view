@@ -4,7 +4,7 @@
 // ----------------------------------------------------------------
 
 import * as express from "express";
-import { apolloServer, } from "@/apolloServer";
+import { apolloServer, } from "@server/apolloServer";
 
 const app: express.Express = express();
 app.use(apolloServer);

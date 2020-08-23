@@ -4,7 +4,7 @@
 // ----------------------------------------------------------------
 
 import * as Redux from "redux";
-import { ActionTypes, } from "@/redux/ActionTypes";
+import { ActionTypes, } from "@client/redux/ActionTypes";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

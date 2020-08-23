@@ -10,12 +10,12 @@ import {
 	Route,
 } from "react-router-dom";
 import * as ReactRedux from "react-redux";
-import { store, } from "@/redux/Store";
+import { store, } from "@client/redux/Store";
 import { ApolloProvider, } from "@apollo/react-hooks";
-import { apolloClient, } from "@/component/main/apolloClient";
-import ComponentTemplate from "@/component/template";
-import ComponentPageTop from "@/component/pageTop";
-import ComponentPageTest from "@/component/pageTest";
+import { apolloClient, } from "@client/component/main/apolloClient";
+import ComponentTemplate from "@client/component/template";
+import ComponentPageTop from "@client/component/pageTop";
+import ComponentPageTest from "@client/component/pageTest";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

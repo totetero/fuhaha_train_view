@@ -5,9 +5,9 @@
 
 import * as Redux from "redux";
 
-import { ReduxTemplateState, reduxTemplateReducer, } from "@/redux/ReduxTemplate";
+import { ReduxTemplateState, reduxTemplateReducer, } from "@client/redux/ReduxTemplate";
 
-import middlewareTemplate from "@/redux/MiddlewareTemplate";
+import middlewareTemplate from "@client/redux/MiddlewareTemplate";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
