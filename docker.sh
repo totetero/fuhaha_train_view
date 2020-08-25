@@ -56,8 +56,10 @@ for ARG in "${@}" ; do
 		sync_put|put)
 			RSYNC_SRC=./
 			RSYNC_DST=${TARGET1_CONTAINER}:/root/project/workspace/
-			RSYNC_COMMAND="rsync --blocking-io -e 'docker exec -i' --exclude='.git' --filter=':- .gitignore' -rltDv"
-			eval ${RSYNC_COMMAND} ${RSYNC_SRC} ${RSYNC_DST}
+			RSYNC_COMMAND="rsync --blocking-io -e 'docker exec -i' --filter=':- .gitignore' -rltDv"
+			eval ${RSYNC_COMMAND} --exclude='.git' --exclude='hosting/src' --exclude='functions/src' ${RSYNC_SRC} ${RSYNC_DST}
+			eval ${RSYNC_COMMAND} --delete ${RSYNC_SRC}hosting/src/ ${RSYNC_DST}hosting/src/
+			eval ${RSYNC_COMMAND} --delete ${RSYNC_SRC}functions/src/ ${RSYNC_DST}functions/src/
 			;;
 		sync_get|get)
 			RSYNC_SRC=${TARGET1_CONTAINER}:/root/project/workspace/
