@@ -4,30 +4,34 @@
 // ----------------------------------------------------------------
 
 import * as Redux from "redux";
-
-import { ReduxTemplateState, reduxTemplateReducer, } from "@client/redux/ReduxTemplate";
-
-import middlewareTemplate from "@client/redux/MiddlewareTemplate";
+import { ActionTypes, } from "@client/redux/ActionTypes";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-// ストア状態受信構造体
-export interface ReduxStoreState {
-	stateTemplate: ReduxTemplateState;
+// 命令構造体
+interface ActionTest extends Redux.Action<ActionTypes> {
+	value: number;
 }
 
 // ----------------------------------------------------------------
-// ----------------------------------------------------------------
+
+// 命令作成
+export function createActionTest(value: number): ActionTest {
+	return {
+		type: ActionTypes.middlewareTemplateTest,
+		value: value,
+	};
+}
+
 // ----------------------------------------------------------------
 
-// ストア作成
-export const store: Redux.Store = Redux.createStore(Redux.combineReducers({
-	stateTemplate: reduxTemplateReducer,
-}), Redux.applyMiddleware(
-	middlewareTemplate
-));
+// 命令処理
+export function middlewareTest(action: Redux.Action<ActionTypes>): boolean {
+	if (action.type !== ActionTypes.middlewareTemplateTest) { return false; }
+	return true;
+};
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

@@ -10,7 +10,7 @@ import {
 	Route,
 } from "react-router-dom";
 import * as ReactRedux from "react-redux";
-import { store, } from "@client/redux/Store";
+import { store, } from "@client/redux/store";
 import { ApolloProvider, } from "@apollo/react-hooks";
 import { apolloClient, } from "@client/component/main/apolloClient";
 import ComponentTemplate from "@client/component/template";
