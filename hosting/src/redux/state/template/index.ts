@@ -5,8 +5,8 @@
 
 import * as Redux from "redux";
 import { ActionTypes, } from "@client/redux/ActionTypes";
-import { State, } from "@client/redux/reducer/template/State";
-import { reducerTest, createActionTest, } from "@client/redux/reducer/template/actionTest";
+import { State, } from "@client/redux/state/template/State";
+import { reducerTest, createActionTest, } from "@client/redux/state/template/actionTest";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -32,9 +32,9 @@ const reducer: Redux.Reducer<State> = (state: State | undefined, action: Redux.A
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-export type ReducerTemplateState = State;
-export const reducerTemplateCreateActionTest = createActionTest;
-export const reducerTemplateReducer = reducer;
+export type StateTemplate = State;
+export const stateTemplate = reducer;
+export const stateTemplateCreateActionTest = createActionTest;
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

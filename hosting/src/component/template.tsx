@@ -8,7 +8,7 @@ import { Link, } from "react-router-dom";
 import * as ReactRedux from "react-redux";
 import * as Redux from "redux";
 import { ReduxStoreState, } from "@client/redux/store";
-import { reducerTemplateCreateActionTest, } from "@client/redux/reducer/template";
+import { stateTemplateCreateActionTest, } from "@client/redux/state/template";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -23,7 +23,7 @@ const Component: React.FunctionComponent<{
 
 	// ステート設定 ストア値
 	const storeValue: number = ReactRedux.useSelector((state: ReduxStoreState): number => state.stateTemplate.value);
-	const setStoreValue: (value: number) => void = (value: number): void => { dispatch(reducerTemplateCreateActionTest(value)); };
+	const setStoreValue: (value: number) => void = (value: number): void => { dispatch(stateTemplateCreateActionTest(value)); };
 
 	// ステート設定 ローカル値
 	const [localValue, setLocalValue,]: [number, (localValue: number) => void,] = React.useState<number>(localValueInit);

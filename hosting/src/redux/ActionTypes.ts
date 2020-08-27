@@ -5,7 +5,7 @@
 
 // 命令種
 export enum ActionTypes {
-	reducerTemplateTest,
+	stateTemplateTest,
 	middlewareTemplateTest,
 }
 

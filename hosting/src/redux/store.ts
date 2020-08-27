@@ -5,7 +5,7 @@
 
 import * as Redux from "redux";
 
-import { ReducerTemplateState, reducerTemplateReducer, } from "@client/redux/reducer/template";
+import { StateTemplate, stateTemplate, } from "@client/redux/state/template";
 
 import middlewareTemplate from "@client/redux/middleware/template";
 
@@ -15,7 +15,7 @@ import middlewareTemplate from "@client/redux/middleware/template";
 
 // ストア状態受信構造体
 export interface ReduxStoreState {
-	stateTemplate: ReducerTemplateState;
+	stateTemplate: StateTemplate;
 }
 
 // ----------------------------------------------------------------
@@ -24,7 +24,7 @@ export interface ReduxStoreState {
 
 // ストア作成
 export const store: Redux.Store = Redux.createStore(Redux.combineReducers({
-	stateTemplate: reducerTemplateReducer,
+	stateTemplate,
 }), Redux.applyMiddleware(
 	middlewareTemplate
 ));
