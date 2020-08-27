@@ -5,6 +5,7 @@
 
 import * as Redux from "redux";
 import { ActionTypes, } from "@client/redux/ActionTypes";
+import { ReduxStoreState, } from "@client/redux/store";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -28,7 +29,10 @@ export function createActionTest(value: number): ActionTest {
 // ----------------------------------------------------------------
 
 // 命令処理
-export function middlewareTest(action: Redux.Action<ActionTypes>): boolean {
+type TypeArgument1 = Redux.Action<ActionTypes>;
+type TypeArgument2 = Redux.Dispatch<TypeArgument1>;
+type TypeArgument3 = Redux.MiddlewareAPI<Redux.Dispatch, ReduxStoreState>;
+export function middlewareTest(api: TypeArgument3, next: TypeArgument2, action: TypeArgument1): boolean {
 	if (action.type !== ActionTypes.middlewareTemplateTest) { return false; }
 	return true;
 };

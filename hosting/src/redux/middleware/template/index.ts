@@ -19,7 +19,7 @@ type TypeReturn1 = Promise<void>;
 type TypeReturn2 = (action: TypeArgument1) => TypeReturn1;
 type TypeReturn3 = (next: TypeArgument2) => TypeReturn2;
 export default (api: TypeArgument3): TypeReturn3 => (next: TypeArgument2): TypeReturn2 => async (action: TypeArgument1): TypeReturn1 => {
-	if (middlewareTest(action)) { return; }
+	if (middlewareTest(api, next, action)) { return; }
 	next(action);
 };
 
