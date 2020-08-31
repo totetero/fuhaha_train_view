@@ -19,7 +19,7 @@ interface ActionTest extends Redux.Action<ActionTypes> {
 // ----------------------------------------------------------------
 
 // 命令作成
-export function createActionTest(value: number): ActionTest {
+function createActionTest(value: number): ActionTest {
 	return {
 		type: ActionTypes.middlewareTemplateTest,
 		value: value,
@@ -32,10 +32,16 @@ export function createActionTest(value: number): ActionTest {
 type TypeArgument1 = Redux.Action<ActionTypes>;
 type TypeArgument2 = Redux.Dispatch<TypeArgument1>;
 type TypeArgument3 = Redux.MiddlewareAPI<Redux.Dispatch, ReduxStoreState>;
-export function middlewareTest(api: TypeArgument3, next: TypeArgument2, action: TypeArgument1): boolean {
+export async function middlewareTest(api: TypeArgument3, next: TypeArgument2, action: TypeArgument1): Promise<boolean> {
 	if (action.type !== ActionTypes.middlewareTemplateTest) { return false; }
 	return true;
 };
+
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+
+export const middlewareTemplateCreateActionTest = createActionTest;
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
