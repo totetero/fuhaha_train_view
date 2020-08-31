@@ -5,10 +5,12 @@
 
 import apollo from "./apollo";
 import firebase from "./firebase";
+import googleMaps from "./googleMaps";
 
 export default {
 	apollo,
 	firebase,
+	googleMaps,
 };
 
 // ----------------------------------------------------------------

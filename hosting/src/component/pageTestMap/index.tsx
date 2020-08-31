@@ -4,7 +4,7 @@
 // ----------------------------------------------------------------
 
 import * as React from "react";
-import { Link, } from "react-router-dom";
+import PartsMap from "@client/component/pageTestMap/partsMap";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -23,26 +23,10 @@ const Component: React.FunctionComponent<{}> = ({}): JSX.Element => {
 			top: 0,
 			bottom: 0,
 		}}>
-			<div style={{
-				flexGrow: 1,
-				display: "flex",
-				flexDirection: "column",
-				justifyContent: "center",
-				alignItems: "center",
-			}}>
-				<div>fuhaha train view</div>
-			</div>
-			<div style={{
-				display: "flex",
-				justifyContent: "space-around",
-				alignItems: "center",
-				width: "100%",
-				height: "100px",
-			}}>
-				<Link to="/test">test</Link>
-				<Link to="/test_map">test_map</Link>
-				<Link to="/template">template</Link>
-			</div>
+			<PartsMap style={{
+				width: "300px",
+				height: "300px",
+			}}></PartsMap>
 		</div>
 	);
 };
