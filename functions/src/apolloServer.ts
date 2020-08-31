@@ -8,6 +8,10 @@ import { DocumentNode, } from "graphql";
 import { IResolvers, } from "graphql-tools";
 import { ApolloServer, gql, } from "apollo-server-express";
 
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+
 const typeDefs: DocumentNode = gql`
 	type Query {
 		hello: String

@@ -7,6 +7,10 @@
 import * as functions from "firebase-functions";
 import app from "@server/App";
 
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+
 export const onRequestHello: functions.HttpsFunction = functions.https.onRequest(async (request: functions.Request, response: functions.Response): Promise<void> => {
 	functions.logger.info("onRequestHello logs!", {structuredData: true});
 	response.send("onRequestHello response!");

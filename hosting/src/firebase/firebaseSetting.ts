@@ -7,6 +7,10 @@ import * as firebase from "firebase/app";
 import "firebase/functions";
 import config from "@config";
 
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+
 firebase.initializeApp(config.firebase);
 
 export const functions: firebase.functions.Functions = firebase.functions();
