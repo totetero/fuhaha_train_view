@@ -25,13 +25,13 @@ import ComponentPageTestMap from "@client/component/pageTestMap";
 const Component: React.FunctionComponent<{}> = ({}): JSX.Element => {
 	return (
 		<ApolloProvider client={apolloClient}>
-			<ReactRedux.Provider store = { store }>
+			<ReactRedux.Provider store = {store}>
 				<BrowserRouter>
 					<Switch>
-						<Route path="/test" component={ ComponentPageTest } />
-						<Route path="/test_map" component={ ComponentPageTestMap } />
-						<Route path="/template" component={ ComponentTemplate } />
-						<Route component={ ComponentPageTop } />
+						<Route path="/test" component={ComponentPageTest} />
+						<Route path="/test_map" component={ComponentPageTestMap} />
+						<Route path="/template" component={ComponentTemplate} />
+						<Route component={ComponentPageTop} />
 					</Switch>
 				</BrowserRouter>
 			</ReactRedux.Provider>

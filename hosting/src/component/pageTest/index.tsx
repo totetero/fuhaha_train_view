@@ -29,12 +29,12 @@ const Component: React.FunctionComponent<{}> = ({}): JSX.Element => {
 		</div>
 	) : result.error ? (
 		<div>
-			<div>{ result.error.toString() }</div>
+			<div>{result.error.toString()}</div>
 		</div>
 	) : (
 		<div>
 			<div>apollo</div>
-			<div>{ result.data?.hello }</div>
+			<div>{result.data?.hello}</div>
 			<button onClick={(): void => { callFunction({}).then((response: string): void => console.log(response)); }}>hello</button>
 		</div>
 	);

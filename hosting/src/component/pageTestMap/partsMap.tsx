@@ -39,7 +39,7 @@ const Component: React.FunctionComponent<{
 		if (!localInitialized) { return; }
 		if (element === null) { return; }
 		const map: google.maps.Map = new google.maps.Map(element, {
-			center: { lat: -34.397, lng: 150.644, },
+			center: { lat: 35.717, lng: 139.731 },
 			zoom: 8,
 		});
 		setLocalMap(map);

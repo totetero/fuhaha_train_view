@@ -38,14 +38,14 @@ const Component: React.FunctionComponent<{
 	return (
 		<div>
 			<div>
-				<button onClick={ (): void => { dispatch(stateTemplateCreateActionTest(1)); } }>add</button>
-				<button onClick={ (): void => { dispatch(stateTemplateCreateActionTest(-1)); } }>sub</button>
-				<span>ストア値: { storeValue }</span>
+				<button onClick={(): void => { dispatch(stateTemplateCreateActionTest(1)); }}>add</button>
+				<button onClick={(): void => { dispatch(stateTemplateCreateActionTest(-1)); }}>sub</button>
+				<span>ストア値: {storeValue}</span>
 			</div>
 			<div>
-				<button onClick={ (): void => setLocalValue(localValue + 1) }>add</button>
-				<button onClick={ (): void => setLocalValue(localValue - 1) }>sub</button>
-				<span>ローカル値: { localValue }</span>
+				<button onClick={(): void => setLocalValue(localValue + 1)}>add</button>
+				<button onClick={(): void => setLocalValue(localValue - 1)}>sub</button>
+				<span>ローカル値: {localValue}</span>
 			</div>
 			<div><Link to='/top'>top</Link></div>
 		</div>
