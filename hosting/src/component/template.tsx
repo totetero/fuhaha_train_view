@@ -47,7 +47,7 @@ const Component: React.FunctionComponent<{
 				<button onClick={(): void => setLocalValue(localValue - 1)}>sub</button>
 				<span>ローカル値: {localValue}</span>
 			</div>
-			<div><Link to='/top'>top</Link></div>
+			<div><Link to="/top">top</Link></div>
 		</div>
 	);
 };

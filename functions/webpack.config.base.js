@@ -18,7 +18,7 @@ module.exports = {
 		path: path.resolve(__dirname, "./"),
 		publicPath: "/",
 		filename: "index.js",
-		libraryTarget: 'commonjs',
+		libraryTarget: "commonjs",
 	},
 	resolve: {
 		extensions: [".js", ".ts",],
