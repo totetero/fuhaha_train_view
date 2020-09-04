@@ -2,6 +2,8 @@
 	"name": "fuhaha_train_view",
 	"version": "0.1.0",
 	"scripts": {
+		"allInstall": "npm install && pushd hosting && npm install && popd && pushd functions && npm install && popd",
+		"allUninstall": "rm -rf node_modules hosting/node_modules functions/node_modules",
 		"login": "firebase login",
 		"logout": "firebase logout",
 		"serve": "firebase serve -p 5000 -o 0.0.0.0",

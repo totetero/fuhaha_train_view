@@ -77,9 +77,7 @@ for ARG in "${@}" ; do
 		# ----------------------------------------------------------------
 
 		install)
-			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm install'
-			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd hosting && npm install'
-			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd functions && npm install'
+			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run allInstall'
 			;;
 		login)
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run login'
@@ -97,11 +95,9 @@ for ARG in "${@}" ; do
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run deploy'
 			;;
 		clean)
-			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && rm -rf node_modules'
+			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run allUninstall'
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && rm -rf hosting/src'
-			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && rm -rf hosting/node_modules'
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && rm -rf functions/src'
-			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && rm -rf functions/node_modules'
 			;;
 		test)
 			;;
