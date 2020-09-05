@@ -5,7 +5,7 @@
 
 import * as firebase from "firebase/app";
 import "firebase/functions";
-import config from "@config";
+import config from "@config/index";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
