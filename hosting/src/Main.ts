@@ -12,8 +12,8 @@ import ComponentMain from "@client/component/main";
 // ----------------------------------------------------------------
 
 // 処理はここから始まる
-document.addEventListener("DOMContentLoaded", (event: Event): void => {
-	ReactDOM.render(React.createElement(ComponentMain), document.getElementById("app"));
+window.document.addEventListener("DOMContentLoaded", (event: Event): void => {
+	ReactDOM.render(React.createElement(ComponentMain), window.document.getElementById("app"));
 });
 
 // ----------------------------------------------------------------
