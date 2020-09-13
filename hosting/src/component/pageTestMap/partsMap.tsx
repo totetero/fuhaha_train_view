@@ -22,22 +22,70 @@ const promiseMap: Promise<void> = new Promise((resolve: () => void): void => {
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
+class Icon {
+	private static count: number = 16;
+	private static urlList: string[] | null = null;
+	private angle: number | null = null;
+
+	constructor() {
+		if (Icon.urlList === null) {
+			const canvas: HTMLCanvasElement = window.document.createElement("canvas");
+			canvas.width = 100;
+			canvas.height = 100;
+			const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
+
+			Promise.all(Array.from(Array(Icon.count)).map((_: undefined, index: number): Promise<string> => {
+				return new Promise((resolve: (blob: Blob | null) => void): void => {
+					const angle: number = 2 * Math.PI * index / Icon.count;
+					this.draw(canvas, context, angle);
+					canvas.toBlob(resolve);
+				}).then((blob: Blob | null): string => {
+					return URL.createObjectURL(blob);
+				});
+			})).then((urlList: string[]): void => {
+				Icon.urlList = urlList;
+			});
+		}
+	}
+
+	private draw(canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, angle: number): void {
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		context.beginPath();
+		context.arc(50, 50, 5, 0, 2 * Math.PI);
+		context.stroke();
+		context.beginPath();
+		context.arc(50 - 10 * Math.cos(-angle), 50 - 10 * Math.sin(-angle), 20, 0, 2 * Math.PI);
+		context.stroke();
+	}
+
+	public icon(angle: number): google.maps.ReadonlyIcon {
+		this.angle = (this.angle === null) ? angle : ((): number => {
+			let dAngle: number = angle - this.angle;
+			while(dAngle > Math.PI) { dAngle -= 2 * Math.PI; }
+			while(dAngle < -Math.PI) { dAngle += 2 * Math.PI; }
+			return this.angle + dAngle * 0.1;
+		})();
+		let index: number = Math.round(this.angle * Icon.count / (2 * Math.PI));
+		while (index < 0) { index += Icon.count; }
+		while (index >= Icon.count) { index -= Icon.count; }
+		return {
+			url: (Icon.urlList === null) ? "" : Icon.urlList[index],
+			anchor: new google.maps.Point(50, 50),
+		};
+	}
+}
+
 // マーカークラス
 class Marker {
 	private marker: google.maps.Marker | null = null;
-	private canvas: HTMLCanvasElement | null = null;
-	private context: CanvasRenderingContext2D | null = null;
+	private icon: Icon | null = null;
 
 	constructor(options: {
 		map: google.maps.Map;
 		position: google.maps.LatLng;
 	}) {
 		this.marker = new google.maps.Marker(options);
-
-		this.canvas = window.document.createElement("canvas");
-		this.canvas.width = 100;
-		this.canvas.height = 100;
-		this.context = this.canvas.getContext("2d")!;
+		this.icon = new Icon();
 	}
 
 	// 地球を完全な球であると仮定して、二つの緯度経度から球面線形補間した緯度経度を厳密に求める
@@ -78,28 +126,22 @@ class Marker {
 		this.marker.setPosition({ lat, lng });
 	}
 
+	// 二つの緯度経度から緯度経度角度の近似値を求める 距離が長かったり日付変更線を跨いだりすると死ぬ
 	public calc(latLng0: google.maps.LatLng, latLng1: google.maps.LatLng, parameter: number): void {
 		if (this.marker === null) { return; }
-		if (this.canvas === null) { return; }
-		if (this.context === null) { return; }
+		if (this.icon === null) { return; }
+
 		const dLat: number = latLng1.lat() - latLng0.lat();
 		const dLng: number = latLng1.lng() - latLng0.lng();
 
-		// 二つの緯度経度から線形補間した緯度経度を求める
+		// 線形補間した緯度経度を求める
 		const lat: number = latLng0.lat() + dLat * parameter;
 		const lng: number = latLng0.lng() + dLng * parameter;
 		this.marker.setPosition({ lat, lng });
 
-		const angle: number = Math.PI - Math.atan2(dLat, dLng);
-		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-		this.context.beginPath();
-		this.context.arc(50, 50, 5, 0, 2 * Math.PI);
-		this.context.stroke();
-		this.context.beginPath();
-		this.context.arc(50 + 10 * Math.cos(angle), 50 + 10 * Math.sin(angle), 20, 0, 2 * Math.PI);
-		this.context.stroke();
-		const url: string =  this.canvas.toDataURL();
-		this.marker.setIcon({ url, anchor: new google.maps.Point(50, 50), });
+		// 角度を求める
+		const angle: number = Math.atan2(dLat, dLng);
+		this.marker.setIcon(this.icon.icon(angle));
 	}
 }
 
