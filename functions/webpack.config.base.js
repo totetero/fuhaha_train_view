@@ -5,6 +5,7 @@
 
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -34,6 +35,9 @@ module.exports = {
 			loader: "ts-loader",
 		},],
 	},
+	plugins: [
+		new HardSourceWebpackPlugin(),
+	],
 };
 
 // ----------------------------------------------------------------

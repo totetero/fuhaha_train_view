@@ -5,6 +5,7 @@
 
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
@@ -35,6 +36,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, "./src/index.html"),
 		}),
+		new HardSourceWebpackPlugin(),
 	],
 };
 
