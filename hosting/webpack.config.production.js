@@ -3,6 +3,7 @@
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
+const path = require("path");
 const { merge, } = require("webpack-merge");
 const base = require("./webpack.config.base.js");
 
@@ -12,6 +13,11 @@ const base = require("./webpack.config.base.js");
 
 module.exports = merge(base, {
 	mode: "production",
+	resolve: {
+		alias: {
+			"@config": path.resolve(__dirname, "../config/production"),
+		},
+	},
 });
 
 // ----------------------------------------------------------------

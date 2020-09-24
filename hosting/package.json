@@ -1,6 +1,7 @@
 {
 	"name": "hosting",
 	"scripts": {
+		"build_mock": "webpack --config webpack.config.mock.js",
 		"build_development": "webpack --config webpack.config.development.js",
 		"build_production": "webpack --config webpack.config.production.js"
 	},

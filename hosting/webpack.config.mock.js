@@ -15,7 +15,7 @@ module.exports = merge(base, {
 	mode: "development",
 	resolve: {
 		alias: {
-			"@config": path.resolve(__dirname, "../config/development"),
+			"@config": path.resolve(__dirname, "../config/mock"),
 		},
 	},
 });

@@ -3,22 +3,16 @@
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-const path = require("path");
-const { merge, } = require("webpack-merge");
-const base = require("./webpack.config.base.js");
+import * as express from "express";
+import app from "@server/App";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-module.exports = merge(base, {
-	mode: "development",
-	resolve: {
-		alias: {
-			"@config": path.resolve(__dirname, "../config/development"),
-		},
-	},
-});
+const port: number = 5000;
+app.use(express.static("../public"));
+app.listen(port, (): void => console.log(`http://localhost:${port}`));
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

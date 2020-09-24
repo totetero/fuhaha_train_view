@@ -12,7 +12,7 @@
 		"paths": {
 			"@client/*": ["./src/*"],
 			"@server/*": ["../functions/src/*"],
-			"@config/*": ["../config/*"],
+			"@config/*": ["../config/base/*"],
 		},
 	},
 	"include": [

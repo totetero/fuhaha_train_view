@@ -11,7 +11,7 @@
 		"paths": {
 			"@server/*": ["./src/*"],
 			"@client/*": ["../hosting/src/*"],
-			"@config/*": ["../config/*"],
+			"@config/*": ["../config/base/*"],
 		},
 	},
 	"include": [

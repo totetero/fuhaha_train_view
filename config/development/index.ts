@@ -3,21 +3,16 @@
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-const path = require("path");
-const { merge, } = require("webpack-merge");
-const base = require("./webpack.config.base.js");
+import config from "../base";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-module.exports = merge(base, {
-	mode: "development",
-	resolve: {
-		alias: {
-			"@config": path.resolve(__dirname, "../config/development"),
-		},
-	},
+export default Object.assign({}, config, {
+	apollo: Object.assign({}, config.apollo, {
+		url: "http://localhost:5001/fuhaha-train-view/us-central1/api/graphql",
+	}),
 });
 
 // ----------------------------------------------------------------

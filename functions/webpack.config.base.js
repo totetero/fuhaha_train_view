@@ -26,7 +26,6 @@ module.exports = {
 		alias: {
 			"@server": path.resolve(__dirname, "./src"),
 			"@client": path.resolve(__dirname, "../hosting/src"),
-			"@config": path.resolve(__dirname, "../config"),
 		},
 	},
 	module: {

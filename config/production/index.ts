@@ -3,17 +3,17 @@
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-export default ((): {
-	url: string;
-} => {
-	return process.env.NODE_ENV === "development" ? {
-		url: "http://localhost:5001/fuhaha-train-view/us-central1/api/graphql",
-	} : process.env.NODE_ENV === "production" ? {
+import config from "../base";
+
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+
+export default Object.assign({}, config, {
+	apollo: Object.assign({}, config.apollo, {
 		url: "https://us-central1-fuhaha-train-view.cloudfunctions.net/api/graphql",
-	} : {
-		url: "",
-	};
-})();
+	}),
+});
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
