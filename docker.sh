@@ -106,9 +106,9 @@ for ARG in "${@}" ; do
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && rm -rf functions/node_modules/.cache/hard-source'
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && rm -rf hosting/src'
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && rm -rf functions/src'
-			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && rm -rf node_modules'
-			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd hosting && rm -rf node_modules'
-			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd functions && rm -rf node_modules'
+			#docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && rm -rf node_modules'
+			#docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd hosting && rm -rf node_modules'
+			#docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd functions && rm -rf node_modules'
 			;;
 		test)
 			;;
