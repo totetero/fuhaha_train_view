@@ -3,25 +3,22 @@
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-import * as express from "express";
-import * as bodyParser from "body-parser";
-import * as cors from "cors";
-import { apolloServer, } from "@server/apollo/server";
-import apiTest from "@server/api/apiTest";
-import apiError from "@server/api/apiError";
+import * as firebase from "firebase/app";
+import "firebase/functions";
+import "firebase/firestore";
+import config from "@config/index";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-const app: express.Express = express();
-app.use(bodyParser.json());
-app.use(cors());
-app.use(apolloServer);
-app.post("/test", apiTest);
-app.use(apiError);
+const app: firebase.app.App = firebase.initializeApp(config.firebaseWebAppConfig);
 
-export default app;
+export const functions: firebase.functions.Functions = firebase.functions(app);
+if (process.env.NODE_ENV === "development") { functions.useFunctionsEmulator("http://localhost:5001"); }
+
+export const firestore: firebase.firestore.Firestore = firebase.firestore(app);
+if (process.env.NODE_ENV === "development") { firestore.settings({ host: "localhost:8080", ssl: false, }); }
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

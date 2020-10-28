@@ -17,7 +17,7 @@ import config from "@config/index";
 const Component: React.FunctionComponent<{}> = ({
 	children,
 }): JSX.Element => {
-	const isHash: boolean = config.apollo.url.startsWith("/");
+	const isHash: boolean = config.api.url === "";
 	return !isHash ? (
 		<BrowserRouter>{children}</BrowserRouter>
 	) : (

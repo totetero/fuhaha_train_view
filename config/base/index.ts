@@ -3,8 +3,9 @@
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-import apollo from "./apollo";
-import firebase from "./firebase";
+import api from "./api";
+import firebaseWebAppConfig from "./firebaseWebAppConfig";
+import firebaseServiceAccountKey from "./firebaseServiceAccountKey";
 import googleMaps from "./googleMaps";
 
 // ----------------------------------------------------------------
@@ -12,8 +13,9 @@ import googleMaps from "./googleMaps";
 // ----------------------------------------------------------------
 
 export default {
-	apollo,
-	firebase,
+	api,
+	firebaseWebAppConfig,
+	firebaseServiceAccountKey,
 	googleMaps,
 };
 

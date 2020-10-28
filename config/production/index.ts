@@ -10,8 +10,8 @@ import config from "../base";
 // ----------------------------------------------------------------
 
 export default Object.assign({}, config, {
-	apollo: Object.assign({}, config.apollo, {
-		url: "https://us-central1-fuhaha-train-view.cloudfunctions.net/api/graphql",
+	api: Object.assign({}, config.api, {
+		url: "https://us-central1-fuhaha-train-view.cloudfunctions.net/api",
 	}),
 });
 

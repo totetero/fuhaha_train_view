@@ -2,7 +2,7 @@
 
 [ ${#} -eq 0 ] && sh ${0} help && exit
 [ ${#} -eq 1 ] && [ ${1} = "first" ] && sh ${0} create start && exit
-[ ${#} -eq 1 ] && [ ${1} = "second" ] && sh ${0} address put build login serve && exit
+[ ${#} -eq 1 ] && [ ${1} = "second" ] && sh ${0} put build login emulators && exit
 [ ${#} -eq 1 ] && [ ${1} = "last" ] && sh ${0} stop clear && exit
 
 BASE_NAME1=fuhaha
@@ -10,11 +10,6 @@ BASE_NAME2=train-view
 TARGET1_CONTAINER=${BASE_NAME1}-ctr-${BASE_NAME2}
 TARGET1_IMAGE=${BASE_NAME1}-img-${BASE_NAME2}
 TARGET1_IMAGE_TAG=1.0.0
-TARGET1_PORT_HOST_OUTER=5000
-TARGET1_PORT_HOST_INNER=5000
-TARGET1_PORT_FUNC_OUTER=5001
-TARGET1_PORT_FUNC_INNER=5001
-TARGET1_PORT_OAUTH=9005
 
 for ARG in "${@}" ; do
 	echo -------- ${ARG} start --------
@@ -37,7 +32,15 @@ for ARG in "${@}" ; do
 		create)
 			docker build --tag ${TARGET1_IMAGE}:${TARGET1_IMAGE_TAG} --force-rm .
 			[ ${?} -gt 0 ] && exit
-			docker create --name ${TARGET1_CONTAINER} --publish ${TARGET1_PORT_HOST_OUTER}:${TARGET1_PORT_HOST_INNER} --publish ${TARGET1_PORT_FUNC_OUTER}:${TARGET1_PORT_FUNC_INNER} --publish ${TARGET1_PORT_OAUTH}:${TARGET1_PORT_OAUTH} --interactive --tty ${TARGET1_IMAGE}:${TARGET1_IMAGE_TAG} /bin/bash --login
+			unset PUBLISHES
+			PUBLISHES=${PUBLISHES}" --publish 4000:4000" # firebase
+			PUBLISHES=${PUBLISHES}" --publish 5000:5000" # firebase
+			PUBLISHES=${PUBLISHES}" --publish 5001:5001" # firebase
+			PUBLISHES=${PUBLISHES}" --publish 8080:8080" # firebase
+			PUBLISHES=${PUBLISHES}" --publish 8085:8085" # firebase
+			PUBLISHES=${PUBLISHES}" --publish 9000:9000" # firebase
+			PUBLISHES=${PUBLISHES}" --publish 9005:9005" # OAuth
+			docker create --name ${TARGET1_CONTAINER} ${PUBLISHES} --interactive --tty ${TARGET1_IMAGE}:${TARGET1_IMAGE_TAG} /bin/bash --login
 			[ ${?} -gt 0 ] && exit
 			;;
 		start)
@@ -67,12 +70,6 @@ for ARG in "${@}" ; do
 			RSYNC_COMMAND="rsync --blocking-io -e 'docker exec -i' --exclude='.git' --filter=':- .gitignore' -rltDv"
 			eval ${RSYNC_COMMAND} ${RSYNC_SRC} ${RSYNC_DST}
 			;;
-		address)
-			DOCKER_IP=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' ${TARGET1_CONTAINER})
-			DOCKER_HOSTIP=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "'${TARGET1_PORT_HOST_INNER}'/tcp") 0).HostIp}}' ${TARGET1_CONTAINER})
-			DOCKER_HOSTPORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "'${TARGET1_PORT_HOST_INNER}'/tcp") 0).HostPort}}' ${TARGET1_CONTAINER})
-			echo http://${DOCKER_HOSTIP}:${DOCKER_HOSTPORT}
-			;;
 
 		# ----------------------------------------------------------------
 
@@ -95,6 +92,9 @@ for ARG in "${@}" ; do
 			;;
 		serve)
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run serve'
+			;;
+		emulators)
+			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run emulators'
 			;;
 		deploy)
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd hosting && npm run build_production'

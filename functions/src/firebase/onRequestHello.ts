@@ -3,25 +3,16 @@
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-import * as express from "express";
-import * as bodyParser from "body-parser";
-import * as cors from "cors";
-import { apolloServer, } from "@server/apollo/server";
-import apiTest from "@server/api/apiTest";
-import apiError from "@server/api/apiError";
+import * as functions from "firebase-functions";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-const app: express.Express = express();
-app.use(bodyParser.json());
-app.use(cors());
-app.use(apolloServer);
-app.post("/test", apiTest);
-app.use(apiError);
-
-export default app;
+export default functions.https.onRequest(async (request: functions.Request, response: functions.Response): Promise<void> => {
+	functions.logger.info("onRequestHello logs!", {structuredData: true});
+	response.send("onRequestHello response!");
+});
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------

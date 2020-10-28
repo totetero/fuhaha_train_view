@@ -11,7 +11,7 @@ import {
 import * as ReactRedux from "react-redux";
 import { store, } from "@client/redux/store";
 import { ApolloProvider, } from "@apollo/react-hooks";
-import { apolloClient, } from "@client/component/main/apolloClient";
+import { apolloClient, } from "@client/apollo/client";
 import Router from "@client/component/main/Router";
 import ComponentTemplate from "@client/component/template";
 import ComponentPageTop from "@client/component/pageTop";

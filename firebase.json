@@ -1,23 +1,50 @@
 {
-  "hosting": {
-    "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "storage": {
-    "rules": "storage.rules"
-  }
+	"hosting": {
+		"public": "public",
+		"ignore": [
+			"firebase.json",
+			"**/.*",
+			"**/node_modules/**"
+		],
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "/index.html"
+			}
+		]
+	},
+	"firestore": {
+		"rules": "firestore.rules",
+		"indexes": "firestore.indexes.json"
+	},
+	"storage": {
+		"rules": "storage.rules"
+	},
+	"emulators": {
+		"hosting": {
+			"host": "0.0.0.0",
+			"port": 5000
+		},
+		"functions": {
+			"host": "0.0.0.0",
+			"port": 5001
+		},
+		"firestore": {
+			"host": "0.0.0.0",
+			"port": 8080
+		},
+		"database": {
+			"host": "0.0.0.0",
+			"port": 9000
+		},
+		"pubsub": {
+			"host": "0.0.0.0",
+			"port": 8085
+		},
+		"ui": {
+			"enabled": true,
+			"host": "0.0.0.0",
+			"port": 4000
+		}
+	}
 }

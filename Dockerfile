@@ -8,7 +8,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN \
 apt-get update && \
 apt-get install -y rsync && \
-apt-get install -y curl
+apt-get install -y curl && \
+apt-get install -y openjdk-11-jdk-headless
 
 RUN \
 apt-get install -y nodejs && \

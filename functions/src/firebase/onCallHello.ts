@@ -3,18 +3,15 @@
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-import { ApolloClient, } from "apollo-client";
-import { InMemoryCache, } from "apollo-cache-inmemory";
-import { HttpLink, } from "apollo-link-http";
-import config from "@config/index";
+import * as functions from "firebase-functions";
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-export const apolloClient = new ApolloClient({
-	cache: new InMemoryCache(),
-	link: new HttpLink({ uri: config.apollo.url, }),
+export default functions.https.onCall(async (data: any, context: functions.https.CallableContext): Promise<string> => {
+	functions.logger.info("onCallHello logs!", {structuredData: true});
+	return "onCallHello response!";
 });
 
 // ----------------------------------------------------------------
