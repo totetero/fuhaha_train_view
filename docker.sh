@@ -2,7 +2,9 @@
 
 [ ${#} -eq 0 ] && sh ${0} help && exit
 [ ${#} -eq 1 ] && [ ${1} = "first" ] && sh ${0} create start && exit
-[ ${#} -eq 1 ] && [ ${1} = "second" ] && sh ${0} put build login emulators && exit
+[ ${#} -eq 1 ] && [ ${1} = "second" ] && sh ${0} login put build_cli build_srv emulators_all && exit
+[ ${#} -eq 1 ] && [ ${1} = "srv" ] && sh ${0} put build_srv emulators_srv && exit
+[ ${#} -eq 1 ] && [ ${1} = "cli" ] && sh ${0} put watch && exit
 [ ${#} -eq 1 ] && [ ${1} = "last" ] && sh ${0} stop clear && exit
 
 BASE_NAME1=fuhaha
@@ -86,15 +88,20 @@ for ARG in "${@}" ; do
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd functions && npm run build_mock'
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd functions && node mock.js'
 			;;
-		build)
+		watch)
+			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd hosting && npm run watch'
+			;;
+		build_cli)
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd hosting && npm run build_development'
+			;;
+		build_srv)
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd functions && npm run build_development'
 			;;
-		serve)
-			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run serve'
+		emulators_srv)
+			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run emulators_srv'
 			;;
-		emulators)
-			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run emulators'
+		emulators_all)
+			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && npm run emulators_all'
 			;;
 		deploy)
 			docker exec -it ${TARGET1_CONTAINER} /bin/bash -c 'source bin/profile.sh && cd hosting && npm run build_production'

@@ -18,6 +18,12 @@ module.exports = merge(base, {
 			"@config": path.resolve(__dirname, "../config/development"),
 		},
 	},
+	devServer: {
+		contentBase: path.resolve(__dirname, "./src"),
+		port: 5000,
+		host:"0.0.0.0",
+		historyApiFallback: true,
+	},
 });
 
 // ----------------------------------------------------------------
