@@ -75,7 +75,7 @@ sh docker.sh srv
 クライアント側はビルドで時間をかけすぎないように、エミュレータを使わずにwebpackでビルドをします。
 
 ```bash
-cd ${FUHAHAROOT}/
+cd ${FUHAHAROOT}/hosting
 npm install
 npm run watch -- --port 8888
 ```
